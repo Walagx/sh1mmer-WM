@@ -26,8 +26,8 @@ get_largest_cros_blockdev() {
 		tmp_size=$(cat "$blockdev"/size)
 		remo=$(cat "$blockdev"/removable)
 		if [ "$tmp_size" -gt "$size" ] && [ "${remo:-0}" -eq 0 ]; then
-			case "$(sfdisk -l -o name "/dev/$dev_name" 2>/dev/null)" in
-				*STATE*KERN-A*ROOT-A*KERN-B*ROOT-B*)
+			case "$(sfdisk -d "/dev/$dev_name" 2>/dev/null)" in
+				*'name="STATE"'*'name="KERN-A"'*'name="ROOT-A"'*'name="KERN-B"'*'name="ROOT-B"'*)
 					largest="/dev/$dev_name"
 					size="$tmp_size"
 					;;

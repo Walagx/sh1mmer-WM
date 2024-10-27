@@ -39,12 +39,6 @@ If it's not, good luck. You'll have to try and call up your OEM and demand the f
 
 ### Building A Beautiful World Shim
 
-<!--
-> [!IMPORTANT]
-> If you're using `hana` or some other older (pre-frecon) board: <br />
-> **DO NOT FOLLOW THESE INSTRUCTIONS!** Instead, skip to the "[Building A Legacy Shim](#building-a-legacy-shim)" section.
--->
-
 Now you can start building. Type out all of these commands in the terminal.
 You need to be on Linux or WSL2 and have the following packages installed: `git`, `wget`.
 You may need to install additional packages, which the script will prompt you to do.
@@ -78,9 +72,6 @@ After injecting, you may continue to the "[Booting Into A Shim](#booting-into-a-
 
 ### Building A Legacy Shim
 
-The factory shims for boards such as `hana` or `coral` were built before graphics support was added into the tty.
-This makes it impossible for the Beautiful World GUI to work and thus a legacy CLI-only shim must be built.
-
 Type out all of these commands in the terminal.
 
 ```
@@ -113,32 +104,22 @@ This should enable Developer Mode or turn off OS Verification.
 Press `ESC + Refresh (↻) + Power (⏻)` at the same time again, then plug in your USB with SH1MMER and you should be booting into the Beautiful World GUI or a CLI screen.
 From here, you can play around with the options and do what you want.
 
+> [!NOTE]
+> On `hana` and `elm` devices, you may need to re-enter recovery mode quickly after enabling developer mode
+> (skipping the  "returning to secure mode" screen).
+
 ***
 
 ### CryptoSmite
-SH1MMER has been patched by Google™️ since v111, but since then a new unenrollment exploit for v119 and lower has released: CryptoSmite.
-By default, this is bundled inside payloads in all SH1MMER shims, and all you need to do is flash a SH1MMER shim, go into Payloads, and run `cryptosmite.sh`.
+SH1MMER has been patched by Google since v111, but since then a new unenrollment exploit for v119 and lower has released: [CryptoSmite](https://github.com/FWSmasher/CryptoSmite).
+By default, this is bundled inside payloads in all SH1MMER shims; and all you need to do is boot SH1MMER, go to the payloads menu, and run the "Cryptosmite" payload.
 
-<details>
-<summary>CryptoSmite Instructions</summary>
-
-1. Download a SH1MMER Prebuilt image here: [dl.darkn.bio](<https://dl.darkn.bio/SH1mmer/Prebuilt/>), then flash a USB with it using [CRU](https://chromewebstore.google.com/detail/chromebook-recovery-utili/pocpnlppkickgojjlmhdmidojbmbodfm).
-2. Disable OS verification *(blocked or not, doesn't matter)*, and boot into the shim.
-3. Navigate to Payloads and navigate to CryptoSmite using the arrow keys, then press `Enter`.
-4. Type in `Y` then press enter, and it'll automatically reboot upon completion.
-5. Proceed through the setup partially till you get to the Add Account Screen.
-   - If you see an update prompt, reboot then press `CTRL + ALT + E` on the Wi-Fi screen.
-     - This *should* allow skipping the update, or make it not appear at all.
-8. Powerwash the Chromebook at the "Add Account" screen. Afterwards, it'll be fully unenrolled.
-
-</details>
-
-### The Fog
+### R111 patch ("The Fog")
 > [!NOTE]
 > It is recommended to use CryptoSmite instead if you're only affected by "_The Fog_" and nothing else.
 > "_The Fog_" instructions are old, however that doesn't mean you can't try it _**if**_ you don't wish to use CryptoSmite.
 
-Downgrading and unenrollment has been patched by Google™️.
+Unenrollment via SH1MMER has been patched by Google on Cr50/Ti50 devices.
 If your Chromebook has never updated to version 112 (or newer) before (check in `chrome://version`),
 then you can ignore this and follow the normal instructions. If not, unenrollment will not work as normal.
 
@@ -157,13 +138,13 @@ This will bypass both issues of The Fog and The Tsunami, however further caveats
 
 </details>
 
-### The Tsunami
+### R114 patch ("The Tsunami")
 
 > [!WARNING]
-> It is **_VERY_** recommended to use CryptoSmite instead if you're on v119 or lower.
-> The instructions to do "_The Tsunami_" are extremely dangerous, even with a chip flasher. **Proceed with caution if you can't use CryptoSmite.**
+> It is **_STRONGLY_** recommended to use CryptoSmite instead if you're on v119 or lower.
+> The instructions to bypass "_The Tsunami_" are potentially dangerous, even with a chip flasher. **Proceed with caution if you can't use CryptoSmite.**
 
-Disabling write protection has also been patched by Google™️.
+Disabling write protection has also been patched by Google on Cr50/Ti50 devices.
 If your Chromebook has never updated to version 114 (or newer) before (check in `chrome://version`),
 then you can ignore this and follow the [Unpatch](https://sh1mmer.me/#fog:~:text=v111) instructions. If not, disabling 
 write protection will not work as normal.

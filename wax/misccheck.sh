@@ -82,7 +82,7 @@ check_stateful() {
 	fi
 	mount -o ro "$1" "$WORKDIR"/mnt
 	if [ -d "$WORKDIR"/mnt/dev_image/factory/py/test/test_lists ]; then
-		MODELS=$(grep -rIhP -m1 -A2 "\(('ro',)? *'model_name'," "$WORKDIR"/mnt/dev_image/factory/py/test/test_lists | grep -oP "\[[^\]]*" | sed "s/[\[\"']//g")
+		MODELS=$(grep -PzorIh -m1 "\(('ro',)? *'model_name',[^\[]*\[\K[^\]]*" "$WORKDIR"/mnt/dev_image/factory/py/test/test_lists | tr -d '\n\0')
 	fi
 	if [ -d "$WORKDIR"/mnt/dev_image/factory/hwid ]; then
 		HWIDS+=($(find "$WORKDIR"/mnt/dev_image/factory/hwid -type f -printf "%f\n" | grep "^[A-Z0-9-]*$"))
@@ -108,13 +108,15 @@ check_stateful() {
 			chmod +x "$WORKDIR"/toolkit
 			"$WORKDIR"/toolkit --quiet --noexec --target "$WORKDIR"/extract2
 			HWIDS+=($(get_hwids "$WORKDIR"/extract2/usr/local/factory/py/hwidfile/*.sh))
+			if [ -d "$WORKDIR"/extract2/usr/local/factory/hwid ]; then
+				HWIDS+=($(find "$WORKDIR"/extract2/usr/local/factory/hwid -type f -printf "%f\n" | grep "^[A-Z0-9-]*$"))
+			fi
 			if [ -f "$WORKDIR"/extract2/usr/local/factory/py/test/test_lists/active_test_list.json ]; then
 				active_test_list=$(jq -r ".id" "$WORKDIR"/extract2/usr/local/factory/py/test/test_lists/active_test_list.json)
-				MODELS=$(grep -Pzo -m1 -A1 '"(vpd.ro.model_name|serials.model_name)"[^\[]*\[\K[^\]]*' "$WORKDIR"/extract2/usr/local/factory/py/test/test_lists/"$active_test_list".test_list.json | tr -d '\n\0')
+				MODELS=$(grep -Pzo -m1 '"(vpd.ro.model_name|serials.model_name)"[^\[]*\[\K[^\]]*' "$WORKDIR"/extract2/usr/local/factory/py/test/test_lists/"$active_test_list".test_list.json | tr -d '\n\0')
 			else
-				MODELS=$(grep -PzorIh -m1 -A1 '"(vpd.ro.model_name|serials.model_name)"[^\[]*\[\K[^\]]*' "$WORKDIR"/extract2/usr/local/factory/py/test/test_lists | tr -d '\n\0')
+				MODELS=$(grep -PzorIh -m1 '"(vpd.ro.model_name|serials.model_name)"[^\[]*\[\K[^\]]*' "$WORKDIR"/extract2/usr/local/factory/py/test/test_lists | tr -d '\n\0')
 			fi
-			MODELS=$(echo "$MODELS" | sed "s/^ *[\"']//;s/[\"'] *$//;s/--/,/g;s/[\"'] *, *[\"']/\n/g" | sort | uniq | sed "s/$/, /" | tr -d '\n' | head -c -2)
 			rm -rf "$WORKDIR"/extract2 "$WORKDIR"/toolkit
 		fi
 		hwid_bundle=$(jq -r ".hwid.file" "$json")
@@ -124,6 +126,7 @@ check_stateful() {
 			rm -f "$WORKDIR"/hwid_dec
 		fi
 	fi
+	MODELS=$(echo "$MODELS" | sed "s/^ *[\"']//;s/[\"'] *$//;s/--/,/g;s/[\"'] *,\{0,1\} *[\"']/\n/g" | sort | uniq | sed "s/$/, /" | tr -d '\n' | head -c -2)
 	HWIDS=$(printf '%s\n' "${HWIDS[@]}" | sort | uniq | sed "s/$/, /" | tr -d '\n' | head -c -2)
 	umount "$WORKDIR"/mnt
 }
@@ -185,7 +188,7 @@ for part in $(echo "$table" | awk '{print $1}'); do
 		if [ "$type" = "0FC63DAF-8483-4772-8E79-3D69D8477DE4" ] || [ "$type" = "EBD0A0A2-B9E5-4433-87C0-68B6B72699C7" ]; then
 			check_stateful "$part" "$num" || :
 		fi
-	elif [ "$type" = "3CB8E202-3B7E-47DD-8A3C-7FF2A13CFCEC" ] || [ "$type" = "EBD0A0A2-B9E5-4433-87C0-68B6B72699C7" ]; then
+	elif [ "$type" = "3CB8E202-3B7E-47DD-8A3C-7FF2A13CFCEC" ] || [ "$type" = "0FC63DAF-8483-4772-8E79-3D69D8477DE4" ] || [ "$type" = "EBD0A0A2-B9E5-4433-87C0-68B6B72699C7" ]; then
 		check_rootfs "$part" "$num" || :
 	fi
 done
