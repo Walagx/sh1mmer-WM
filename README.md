@@ -106,7 +106,7 @@ From here, you can play around with the options and do what you want.
 
 > [!NOTE]
 > On `hana` and `elm` devices, you may need to re-enter recovery mode quickly after enabling developer mode
-> (skipping the  "returning to secure mode" screen).
+> (skipping the "OS verification is OFF" screen).
 
 ***
 
