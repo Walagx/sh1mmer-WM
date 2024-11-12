@@ -8,7 +8,7 @@
 
 set -eE
 
-SCRIPT_DATE="[2024-04-18]"
+SCRIPT_DATE="[2024-11-11]"
 BACKUP_PAYLOAD=unenroll.tar.gz
 NEW_ENCSTATEFUL_SIZE=$((1024 * 1024 * 1024)) # 1 GB
 
@@ -27,7 +27,7 @@ get_largest_cros_blockdev() {
 		remo=$(cat "$blockdev"/removable)
 		if [ "$tmp_size" -gt "$size" ] && [ "${remo:-0}" -eq 0 ]; then
 			case "$(sfdisk -d "/dev/$dev_name" 2>/dev/null)" in
-				*'name="STATE"'*'name="KERN-A"'*'name="ROOT-A"'*'name="KERN-B"'*'name="ROOT-B"'*)
+				*'name="STATE"'*'name="KERN-A"'*'name="ROOT-A"'*)
 					largest="/dev/$dev_name"
 					size="$tmp_size"
 					;;

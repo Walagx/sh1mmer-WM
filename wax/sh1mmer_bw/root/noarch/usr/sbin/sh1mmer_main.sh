@@ -1,6 +1,6 @@
 #!/bin/bash
 
-SCRIPT_DATE="[2024-10-27]"
+SCRIPT_DATE="[2024-11-11]"
 
 . /usr/sbin/sh1mmer_gui.sh
 . /usr/sbin/sh1mmer_optionsSelector.sh
