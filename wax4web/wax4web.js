@@ -1,6 +1,6 @@
 // wax4web
 
-var ENABLE_WAX4WEB = false;
+var ENABLE_WAX4WEB = true;
 
 if (!ENABLE_WAX4WEB) throw "wax4web is disabled on this site";
 
