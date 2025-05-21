@@ -20,6 +20,10 @@ We can edit the other partitions to our will as long as we remove the forced rea
 
 > [!NOTE]
 > [dl.sh1mmer.me](https://dl.sh1mmer.me) has been taken down, so you'll need to find a site rehosting the RMA shims alongside Chromebrew.
+> Some hosting sites are:
+> [dl.kxtz.dev](https://dl.kxtz.dev)(Kxtz's download server is currently down, so go support them at [kxtz](https://kxtz.dev/money) )
+> [dl.fanqyxl.net](https://dl.fanqyxl.net/)
+> [mirror.akane.network](https://mirror.akane.network/)
 
 Here's how you do that.
 First, you need to know your Chromebook's board. Go to `chrome://version` on your Chromebook and copy the word after `stable-channel`.
@@ -53,7 +57,7 @@ This will build a beautiful world mini shim. If you want to add chromebrew, do t
 ```
 git clone https://github.com/Walagx/sh1mmer-WM.git
 cd sh1mmer-WM/wax
-wget https://dl.darkn.bio/api/raw/?path=/Chromebrew/chromebrew.tar.gz
+https://mirror.akane.network/shims/ChromeOS/shims/Chromebrew/chromebrew.tar.gz
 sudo bash wax.sh -i path/to/the/shim/you/downloaded.bin --chromebrew chromebrew.tar.gz -s 4G
 ```
 
