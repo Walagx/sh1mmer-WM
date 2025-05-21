@@ -20,9 +20,9 @@ We can edit the other partitions to our will as long as we remove the forced rea
 
 > [!NOTE]
 > [dl.sh1mmer.me](https://dl.sh1mmer.me) has been taken down, so you'll need to find a site rehosting the RMA shims alongside Chromebrew.
-> Some hosting sites are:
-> [dl.kxtz.dev](https://dl.kxtz.dev)(Kxtz's download server is currently down, so go support them at [kxtz](https://kxtz.dev/money) )
-> [dl.fanqyxl.net](https://dl.fanqyxl.net/)
+> Some hosting sites are:\
+> [dl.kxtz.dev](https://dl.kxtz.dev)(Kxtz's download server is currently down, so go support them at [kxtz](https://kxtz.dev/money))\
+> [dl.fanqyxl.net](https://dl.fanqyxl.net/)\
 > [mirror.akane.network](https://mirror.akane.network/)
 
 Here's how you do that.
