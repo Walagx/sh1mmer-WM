@@ -176,3 +176,4 @@ This bypass is **not recommended** as you risk permanently bricking the Chromebo
 - [Sharp_Jack](https://discord.com/users/1006048734708240434) - Created wax & compiled the first shims
 - [ember](https://discord.com/users/1052344689178722375) - Helped with the website
 - [Mark](mailto:mark@mercurywork.shop) - Technical Understanding and Advisory into the ChromeOS ecosystem
+- [ZeglolTheThirtySixth](https://github.com/ZeglolTheThirtySixth) - Created the DAUB payload
