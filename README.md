@@ -51,11 +51,13 @@ sudo bash wax.sh -i path/to/the/shim/you/downloaded.bin
 This will build a beautiful world mini shim. If you want to add chromebrew, do the following:
 
 ```
-git clone https://github.com/MercuryWorkshop/sh1mmer
-cd sh1mmer/wax
+git clone https://github.com/Walagx/sh1mmer-WM.git
+cd sh1mmer-WM/wax
 wget https://dl.darkn.bio/api/raw/?path=/Chromebrew/chromebrew.tar.gz
 sudo bash wax.sh -i path/to/the/shim/you/downloaded.bin --chromebrew chromebrew.tar.gz -s 4G
 ```
+> [!NOTE]
+> [dl.darkn.bio](https://dl.darkn.bio) is currently down so you will have to find another way to get the chromebrew.tar.gz file.
 
 > [!NOTE]
 > If you want to build a devshim, replace `chromebrew.tar.gz` with `chromebrew-dev.tar.gz` and replace `-s 4G` with `-s 7G` in the wax command.
@@ -75,8 +77,8 @@ After injecting, you may continue to the "[Booting Into A Shim](#booting-into-a-
 Type out all of these commands in the terminal.
 
 ```
-git clone https://github.com/MercuryWorkshop/sh1mmer
-cd sh1mmer/wax
+git clone https://github.com/Walagx/sh1mmer-WM.git
+cd sh1mmer-WM/wax
 sudo bash wax.sh -i path/to/the/shim/you/downloaded.bin -p legacy
 ```
 
