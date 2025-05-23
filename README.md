@@ -21,7 +21,7 @@ We can edit the other partitions to our will as long as we remove the forced rea
 > [!NOTE]
 > [dl.sh1mmer.me](https://dl.sh1mmer.me) has been taken down, so you'll need to find a site rehosting the RMA shims alongside Chromebrew.
 > Some hosting sites are:\
-> [dl.kxtz.dev](https://dl.kxtz.dev)(Kxtz's download server is currently down, so go support them at [kxtz](https://kxtz.dev/money))\
+> [dl.kxtz.dev](https://dl.kxtz.dev) (Kxtz's download server is currently down, so go support them at [kxtz](https://kxtz.dev/money))\
 > [dl.fanqyxl.net](https://dl.fanqyxl.net/)\
 > [mirror.akane.network](https://mirror.akane.network/)
 
@@ -48,8 +48,8 @@ You need to be on Linux or WSL2 and have the following packages installed: `git`
 You may need to install additional packages, which the script will prompt you to do.
 
 ```
-git clone https://github.com/MercuryWorkshop/sh1mmer
-cd sh1mmer/wax
+https://github.com/Walagx/sh1mmer-WM.git
+cd sh1mmer-WM/wax
 sudo bash wax.sh -i path/to/the/shim/you/downloaded.bin
 ```
 This will build a beautiful world mini shim. If you want to add chromebrew, do the following:
